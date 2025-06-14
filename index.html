@@ -70,26 +70,133 @@
             Nos <span class="text-purple-600">Produits Phares</span> du Moment
         </h3>
         
-        <!-- État de chargement (affiché initialement, puis caché par JS) -->
-        <div id="products-loading" class="text-center py-12">
-            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600"></div>
-            <p class="mt-4 text-gray-600">Chargement des produits...</p>
-        </div>
-        
-        <!-- Conteneur des produits (caché initialement, puis affiché par JS) -->
-        <div id="products-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 hidden">
-            <!-- Les produits seront chargés ici dynamiquement par JavaScript -->
-        </div>
-        
-        <!-- État d'erreur (caché par défaut, affiché en cas d'échec de chargement) -->
-        <div id="products-error" class="text-center py-12 hidden">
-            <div class="text-red-500 mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-alert-circle w-12 h-12 mx-auto"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+        <!-- Conteneur des produits -->
+        <div id="products-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <!-- Produit 1 -->
+            <div class="bg-white rounded-2xl shadow-xl p-6 transition-transform duration-300 hover:scale-105 flex flex-col justify-between">
+                <div>
+                    <img src="https://images-na.ssl-images-amazon.com/images/I/71rQ6N4dKPL._AC_SL1500_.jpg" 
+                         alt="Casque Bluetooth Sans Fil Sony WH-1000XM5" 
+                         class="w-full h-55 object-cover rounded-xl mb-4 shadow-md"
+                         onerror="this.src='https://placehold.co/400x300/a78bfa/ffffff?text=Image+Non+Disponible'"/>
+                    <h4 class="text-2xl font-bold text-gray-900 mb-2">Casque Bluetooth Sans Fil Sony WH-1000XM5</h4>
+                    <p class="text-gray-600 mb-4 text-justify">
+                        Le casque Bluetooth Sony WH-1000XM5 offre une réduction de bruit de pointe, un son exceptionnel et un confort optimal pour des heures d'écoute. Idéal pour les voyages et le travail.
+                    </p>
+                    <p class="text-lg font-semibold text-purple-600 mb-4">349,00 €</p>
+                </div>
+                <a href="https://www.amazon.fr/Sony-WH-1000XM5-r%C3%A9duction-d%C3%A9couteurs-intelligente/dp/B09V7B1C6N/" 
+                    target="_blank" 
+                    class="mt-auto bg-purple-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-purple-600 transition duration-300 ease-in-out shadow-md text-center">
+                    Voir sur Amazon
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart inline-block ml-2 w-4 h-4"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                </a>
             </div>
-            <p class="text-gray-600">Erreur lors du chargement des produits.</p>
-            <button onclick="loadProducts()" class="mt-4 bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition duration-200">
-                Réessayer
-            </button>
+
+            <!-- Produit 2 -->
+            <div class="bg-white rounded-2xl shadow-xl p-6 transition-transform duration-300 hover:scale-105 flex flex-col justify-between">
+                <div>
+                    <img src="https://images-na.ssl-images-amazon.com/images/I/71Xm3z1W8QL._AC_SL1500_.jpg" 
+                         alt="Écran PC Gaming ASUS TUF Gaming VG27AQ1A" 
+                         class="w-full h-55 object-cover rounded-xl mb-4 shadow-md"
+                         onerror="this.src='https://placehold.co/400x300/a78bfa/ffffff?text=Image+Non+Disponible'"/>
+                    <h4 class="text-2xl font-bold text-gray-900 mb-2">Écran PC Gaming ASUS TUF Gaming VG27AQ1A</h4>
+                    <p class="text-gray-600 mb-4 text-justify">
+                        Moniteur gaming de 27 pouces avec une résolution QHD (2560x1440), un taux de rafraîchissement de 170Hz et un temps de réponse de 1ms pour une expérience de jeu fluide et immersive.
+                    </p>
+                    <p class="text-lg font-semibold text-purple-600 mb-4">299,99 €</p>
+                </div>
+                <a href="https://www.amazon.fr/ASUS-VG27AQ1A-Gaming-Moniteur-inclinable/dp/B08V8R5M4J/" 
+                    target="_blank" 
+                    class="mt-auto bg-purple-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-purple-600 transition duration-300 ease-in-out shadow-md text-center">
+                    Voir sur Amazon
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart inline-block ml-2 w-4 h-4"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                </a>
+            </div>
+
+            <!-- Produit 3 -->
+            <div class="bg-white rounded-2xl shadow-xl p-6 transition-transform duration-300 hover:scale-105 flex flex-col justify-between">
+                <div>
+                    <img src="https://images-na.ssl-images-amazon.com/images/I/71b2d0C2fNL._AC_SL1500_.jpg" 
+                         alt="Robot Aspirateur Laveur Roborock S8 Pro Ultra" 
+                         class="w-full h-55 object-cover rounded-xl mb-4 shadow-md"
+                         onerror="this.src='https://placehold.co/400x300/a78bfa/ffffff?text=Image+Non+Disponible'"/>
+                    <h4 class="text-2xl font-bold text-gray-900 mb-2">Robot Aspirateur Laveur Roborock S8 Pro Ultra</h4>
+                    <p class="text-gray-600 mb-4 text-justify">
+                        Le Roborock S8 Pro Ultra est un robot aspirateur et laveur intelligent avec station de vidage automatique, séchage à l'air chaud et brosses duo pour un nettoyage impeccable.
+                    </p>
+                    <p class="text-lg font-semibold text-purple-600 mb-4">1 299,00 €</p>
+                </div>
+                <a href="https://www.amazon.fr/Roborock-S8-Pro-Ultra-Auto-vidange/dp/B0BRJ81Y8P/" 
+                    target="_blank" 
+                    class="mt-auto bg-purple-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-purple-600 transition duration-300 ease-in-out shadow-md text-center">
+                    Voir sur Amazon
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart inline-block ml-2 w-4 h-4"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                </a>
+            </div>
+
+            <!-- Produit 4 -->
+            <div class="bg-white rounded-2xl shadow-xl p-6 transition-transform duration-300 hover:scale-105 flex flex-col justify-between">
+                <div>
+                    <img src="https://images-na.ssl-images-amazon.com/images/I/71X8F50R7PL._AC_SL1500_.jpg" 
+                         alt="Apple Watch Series 9 GPS + Cellular" 
+                         class="w-full h-55 object-cover rounded-xl mb-4 shadow-md"
+                         onerror="this.src='https://placehold.co/400x300/a78bfa/ffffff?text=Image+Non+Disponible'"/>
+                    <h4 class="text-2xl font-bold text-gray-900 mb-2">Apple Watch Series 9 GPS + Cellular</h4>
+                    <p class="text-gray-600 mb-4 text-justify">
+                        La dernière Apple Watch avec des fonctionnalités de santé avancées, un écran plus lumineux, et la possibilité de passer des appels et d'envoyer des messages sans votre iPhone.
+                    </p>
+                    <p class="text-lg font-semibold text-purple-600 mb-4">499,00 €</p>
+                </div>
+                <a href="https://www.amazon.fr/Apple-Watch-Series-Cellular-Aluminium/dp/B0CHX5T47V/" 
+                    target="_blank" 
+                    class="mt-auto bg-purple-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-purple-600 transition duration-300 ease-in-out shadow-md text-center">
+                    Voir sur Amazon
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart inline-block ml-2 w-4 h-4"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                </a>
+            </div>
+
+            <!-- Produit 5 -->
+            <div class="bg-white rounded-2xl shadow-xl p-6 transition-transform duration-300 hover:scale-105 flex flex-col justify-between">
+                <div>
+                    <img src="https://images-na.ssl-images-amazon.com/images/I/61Nlq+X2YyL._AC_SL1500_.jpg" 
+                         alt="Machine à Café Nespresso Vertuo Pop De'Longhi" 
+                         class="w-full h-55 object-cover rounded-xl mb-4 shadow-md"
+                         onerror="this.src='https://placehold.co/400x300/a78bfa/ffffff?text=Image+Non+Disponible'"/>
+                    <h4 class="text-2xl font-bold text-gray-900 mb-2">Machine à Café Nespresso Vertuo Pop De'Longhi</h4>
+                    <p class="text-gray-600 mb-4 text-justify">
+                        Compacte et colorée, la Nespresso Vertuo Pop prépare des cafés de toutes tailles, du court au mug, avec une simple pression sur un bouton. Idéale pour les amateurs de café variés.
+                    </p>
+                    <p class="text-lg font-semibold text-purple-600 mb-4">89,99 €</p>
+                </div>
+                <a href="https://www.amazon.fr/Nespresso-Vertuo-Pop-DeLonghi-Capsules/dp/B0BDXG6R8S/" 
+                    target="_blank" 
+                    class="mt-auto bg-purple-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-purple-600 transition duration-300 ease-in-out shadow-md text-center">
+                    Voir sur Amazon
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart inline-block ml-2 w-4 h-4"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                </a>
+            </div>
+
+            <!-- Produit 6 -->
+            <div class="bg-white rounded-2xl shadow-xl p-6 transition-transform duration-300 hover:scale-105 flex flex-col justify-between">
+                <div>
+                    <img src="https://images-na.ssl-images-amazon.com/images/I/51wXFp9oEQL._AC_SL1000_.jpg" 
+                         alt="Fire TV Stick 4K Max (2e génération)" 
+                         class="w-full h-55 object-cover rounded-xl mb-4 shadow-md"
+                         onerror="this.src='https://placehold.co/400x300/a78bfa/ffffff?text=Image+Non+Disponible'"/>
+                    <h4 class="text-2xl font-bold text-gray-900 mb-2">Fire TV Stick 4K Max (2e génération)</h4>
+                    <p class="text-gray-600 mb-4 text-justify">
+                        Le plus puissant des Fire TV Stick, avec Wi-Fi 6E, prise en charge de la 4K Ultra HD, Dolby Vision, HDR10+ et Dolby Atmos pour une expérience de streaming fluide et immersive.
+                    </p>
+                    <p class="text-lg font-semibold text-purple-600 mb-4">79,99 €</p>
+                </div>
+                <a href="https://www.amazon.fr/fire-tv-stick-4k-max-telecommande-vocale-alexa/dp/B0BL5X8H5Q/" 
+                    target="_blank" 
+                    class="mt-auto bg-purple-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-purple-600 transition duration-300 ease-in-out shadow-md text-center">
+                    Voir sur Amazon
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart inline-block ml-2 w-4 h-4"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                </a>
+            </div>
         </div>
     </section>
 
@@ -184,140 +291,6 @@
                 mobileMenu.classList.toggle('hidden');
             });
         }
-
-        
-
-        // Fonction asynchrone pour charger et afficher les produits
-        async function loadProducts() {
-            const loadingEl = document.getElementById('products-loading');
-            const containerEl = document.getElementById('products-container');
-            const errorEl = document.getElementById('products-error');
-
-            // Affiche l'état de chargement et cache le conteneur de produits et l'erreur
-            loadingEl.classList.remove('hidden');
-            containerEl.classList.add('hidden');
-            errorEl.classList.add('hidden');
-
-            try {
-                // Données de produits mockées (simulent une réponse API)
-                const mockProducts = [
-                    {
-                        title: "Casque Bluetooth Sans Fil Sony WH-1000XM5",
-                        description: "Le casque Bluetooth Sony WH-1000XM5 offre une réduction de bruit de pointe, un son exceptionnel et un confort optimal pour des heures d'écoute. Idéal pour les voyages et le travail.",
-                        price: "349,00 €",
-                        image_url: "https://images-na.ssl-images-amazon.com/images/I/71rQ6N4dKPL._AC_SL1500_.jpg",
-                        amazon_link: "https://www.amazon.fr/Sony-WH-1000XM5-r%C3%A9duction-d%C3%A9couteurs-intelligente/dp/B09V7B1C6N/"
-                    },
-                    {
-                        title: "Écran PC Gaming ASUS TUF Gaming VG27AQ1A",
-                        description: "Moniteur gaming de 27 pouces avec une résolution QHD (2560x1440), un taux de rafraîchissement de 170Hz et un temps de réponse de 1ms pour une expérience de jeu fluide et immersive.",
-                        price: "299,99 €",
-                        image_url: "https://images-na.ssl-images-amazon.com/images/I/71Xm3z1W8QL._AC_SL1500_.jpg",
-                        amazon_link: "https://www.amazon.fr/ASUS-VG27AQ1A-Gaming-Moniteur-inclinable/dp/B08V8R5M4J/"
-                    },
-                    {
-                        title: "Robot Aspirateur Laveur Roborock S8 Pro Ultra",
-                        description: "Le Roborock S8 Pro Ultra est un robot aspirateur et laveur intelligent avec station de vidage automatique, séchage à l'air chaud et brosses duo pour un nettoyage impeccable.",
-                        price: "1 299,00 €",
-                        image_url: "https://images-na.ssl-images-amazon.com/images/I/71b2d0C2fNL._AC_SL1500_.jpg",
-                        amazon_link: "https://www.amazon.fr/Roborock-S8-Pro-Ultra-Auto-vidange/dp/B0BRJ81Y8P/"
-                    },
-                     {
-                        title: "Apple Watch Series 9 GPS + Cellular",
-                        description: "La dernière Apple Watch avec des fonctionnalités de santé avancées, un écran plus lumineux, et la possibilité de passer des appels et d'envoyer des messages sans votre iPhone.",
-                        price: "499,00 €",
-                        image_url: "https://images-na.ssl-images-amazon.com/images/I/71X8F50R7PL._AC_SL1500_.jpg",
-                        amazon_link: "https://www.amazon.fr/Apple-Watch-Series-Cellular-Aluminium/dp/B0CHX5T47V/"
-                    },
-                    {
-                        title: "Machine à Café Nespresso Vertuo Pop De'Longhi",
-                        description: "Compacte et colorée, la Nespresso Vertuo Pop prépare des cafés de toutes tailles, du court au mug, avec une simple pression sur un bouton. Idéale pour les amateurs de café variés.",
-                        price: "89,99 €",
-                        image_url: "https://images-na.ssl-images-amazon.com/images/I/61Nlq+X2YyL._AC_SL1500_.jpg",
-                        amazon_link: "https://www.amazon.fr/Nespresso-Vertuo-Pop-DeLonghi-Capsules/dp/B0BDXG6R8S/"
-                    },
-                    {
-                        title: "Fire TV Stick 4K Max (2e génération)",
-                        description: "Le plus puissant des Fire TV Stick, avec Wi-Fi 6E, prise en charge de la 4K Ultra HD, Dolby Vision, HDR10+ et Dolby Atmos pour une expérience de streaming fluide et immersive.",
-                        price: "79,99 €",
-                        image_url: "https://images-na.ssl-images-amazon.com/images/I/51wXFp9oEQL._AC_SL1000_.jpg",
-                        amazon_link: "https://www.amazon.fr/fire-tv-stick-4k-max-telecommande-vocale-alexa/dp/B0BL5X8H5Q/"
-                    }
-                ];
-
-                // Simuler un délai réseau pour voir l'état de chargement
-                await new Promise(resolve => setTimeout(resolve, 1000)); 
-
-                // Afficher les produits
-                renderProducts(mockProducts);
-                loadingEl.classList.add('hidden');
-                containerEl.classList.remove('hidden');
-            } catch (error) {
-                console.error('Error loading products:', error);
-                loadingEl.classList.add('hidden');
-                errorEl.classList.remove('hidden');
-            }
-        }
-
-        // Fonction pour rendre les produits dans le DOM
-        function renderProducts(products) {
-            const container = document.getElementById('products-container');
-            
-            // Si aucun produit n'est disponible, affiche un message
-            if (products.length === 0) {
-                container.innerHTML = `
-                    <div class="col-span-full text-center py-12">
-                        <div class="text-gray-400 mb-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-package w-16 h-16 mx-auto"><path d="M16.5 9.4 7.55 4.24"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.29,7 12,12 20.71,7"/><line x1="12" x2="12" y1="22" y2="12"/></svg>
-                        </div>
-                        <p class="text-gray-600 text-lg">Aucun produit disponible pour le moment</p>
-                        <p class="text-gray-500">Revenez bientôt pour découvrir nos dernières sélections !</p>
-                    </div>
-                `;
-                return;
-            }
-
-            // Génère le HTML pour chaque produit et l'insère dans le conteneur
-            container.innerHTML = products.map(product => `
-                <div class="bg-white rounded-2xl shadow-xl p-6 transition-transform duration-300 hover:scale-105 flex flex-col justify-between">
-                    <div>
-                        <img src="${escapeHtml(product.image_url)}" 
-                             alt="${escapeHtml(product.title)}" 
-                             class="w-full h-55 object-cover rounded-xl mb-4 shadow-md"
-                             onerror="this.src='https://placehold.co/400x300/a78bfa/ffffff?text=Image+Non+Disponible'"/>
-                        <h4 class="text-2xl font-bold text-gray-900 mb-2">${escapeHtml(product.title)}</h4>
-                        <p class="text-gray-600 mb-4 text-justify">
-                            ${escapeHtml(product.description)}
-                        </p>
-                        ${product.price ? `<p class="text-lg font-semibold text-purple-600 mb-4">${escapeHtml(product.price)}</p>` : ''}
-                    </div>
-                    <a href="${escapeHtml(product.amazon_link)}" 
-                        target="_blank" 
-                        class="mt-auto bg-purple-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-purple-600 transition duration-300 ease-in-out shadow-md text-center">
-                        Voir sur Amazon
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart inline-block ml-2 w-4 h-4"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-                    </a>
-                </div>
-            `).join('');
-
-            // Réinitialise les icônes Lucide pour le nouveau contenu dynamiquement ajouté
-            lucide.createIcons();
-        }
-
-        // Fonction utilitaire pour échapper le HTML, prévenant les attaques XSS
-        function escapeHtml(text) {
-            const map = {
-                '&': '&amp;',
-                '<': '&lt;',
-                '>': '&gt;',
-                '"': '&quot;',
-                "'": '&#039;'
-            };
-            return text.replace(/[&<>"']/g, function(m) { return map[m]; });
-        }
-
-        // Charge les produits lorsque le DOM est entièrement chargé
-        document.addEventListener('DOMContentLoaded', loadProducts);
     </script>
 </body>
 </html>
