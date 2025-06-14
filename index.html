@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bons plans Amazon</title>
+    <!-- Tailwind CSS CDN pour un stylisme rapide et responsive -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons CDN pour des icônes légères et personnalisables -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        /* Styles personnalisés pour la police de caractères Inter */
+        body {
+            font-family: "Inter", sans-serif;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50 font-sans antialiased text-gray-800">
+
+    <!-- Barre de navigation principale -->
+    <nav class="bg-white shadow-lg p-4 flex justify-between items-center rounded-b-xl">
+        <div class="flex items-center space-x-2">
+            <!-- Icône de panier Lucide pour le logo -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart text-purple-600 h-8 w-8"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+            <h1 class="text-3xl font-extrabold text-gray-900">
+                <span class="text-purple-600">Steeven </span>Recommends
+            </h1>
+        </div>
+        <!-- Liens de navigation pour les écrans de bureau -->
+        <div class="hidden md:flex space-x-6">
+            <a href="#accueil" class="text-gray-700 hover:text-purple-600 font-semibold transition duration-300">Accueil</a>
+            <a href="#produits" class="text-gray-700 hover:text-purple-600 font-semibold transition duration-300">Produits Phares</a>
+            <a href="#apropos" class="text-gray-700 hover:text-purple-600 font-semibold transition duration-300">À Propos</a>
+            <a href="#contact" class="text-gray-700 hover:text-purple-600 font-semibold transition duration-300">Contact</a>
+        </div>
+        <!-- Bouton de menu mobile -->
+        <button id="mobile-menu-button" class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
+            <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+    </nav>
+
+    <!-- Menu mobile (caché par défaut) -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg py-4 rounded-b-xl">
+        <a href="#accueil" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition duration-300">Accueil</a>
+        <a href="#produits" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition duration-300">Produits Phares</a>
+        <a href="#apropos" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition duration-300">À Propos</a>
+        <a href="#contact" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition duration-300">Contact</a>
+    </div>
+
+    <!-- Section d'accueil (Hero Section) -->
+    <section id="accueil" class="container mx-auto px-6 py-20 text-center">
+        <div class="bg-white p-8 rounded-2xl shadow-xl max-w-4xl mx-auto transform transition-transform duration-500 hover:scale-105">
+            <h2 class="text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
+                Découvrez <span class="text-purple-600">Les Meilleures Offres</span> et Produits Essentiels
+            </h2>
+            <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+                Nous sélectionnons méticuleusement les meilleurs produits Amazon pour vous simplifier la vie et vous garantir des achats malins et fiables.
+            </p>
+            <button class="bg-purple-600 text-white px-8 py-4 rounded-full text-lg font-bold shadow-lg hover:bg-purple-700 transition duration-300 ease-in-out transform hover:-translate-y-1">
+                Explorer les Offres
+                <!-- Icône d'étoile Lucide -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star inline-block ml-2 w-5 h-5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </button>
+        </div>
+    </section>
+
+    <!-- Section des produits phares -->
+    <section id="produits" class="container mx-auto px-6 py-16">
+        <h3 class="text-4xl font-bold text-center text-gray-900 mb-12">
+            Nos <span class="text-purple-600">Produits Phares</span> du Moment
+        </h3>
+        
+        <!-- État de chargement (affiché initialement, puis caché par JS) -->
+        <div id="products-loading" class="text-center py-12">
+            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600"></div>
+            <p class="mt-4 text-gray-600">Chargement des produits...</p>
+        </div>
+        
+        <!-- Conteneur des produits (caché initialement, puis affiché par JS) -->
+        <div id="products-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 hidden">
+            <!-- Les produits seront chargés ici dynamiquement par JavaScript -->
+        </div>
+        
+        <!-- État d'erreur (caché par défaut, affiché en cas d'échec de chargement) -->
+        <div id="products-error" class="text-center py-12 hidden">
+            <div class="text-red-500 mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-alert-circle w-12 h-12 mx-auto"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+            </div>
+            <p class="text-gray-600">Erreur lors du chargement des produits.</p>
+            <button onclick="loadProducts()" class="mt-4 bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition duration-200">
+                Réessayer
+            </button>
+        </div>
+    </section>
+
+    <!-- Section "Pourquoi nous faire confiance" -->
+    <section id="apropos" class="container mx-auto px-6 py-16">
+        <div class="bg-purple-100 p-8 rounded-2xl shadow-xl text-center">
+            <h3 class="text-4xl font-bold text-purple-800 mb-8">
+                Pourquoi Nous Faire <span class="text-purple-600">Confiance</span> ?
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-md transform transition-transform duration-300 hover:scale-105">
+                    <!-- Icône de récompense Lucide -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-award w-12 h-12 text-purple-500 mx-auto mb-4"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17.232 22 12 18.5 6.768 22 8.523 12.89 2 8.67l7.854-.545L12 2l2.146 6.125L22 8.67Z"/></svg>
+                    <h4 class="text-xl font-semibold text-gray-900 mb-2">Sélection Rigoureuse</h4>
+                    <p class="text-gray-600">
+                        Nous testons et comparons chaque produit pour ne retenir que le meilleur, en nous basant sur la qualité, la performance et le rapport qualité-prix.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md transform transition-transform duration-300 hover:scale-105">
+                    <!-- Icône d'étoile Lucide -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-12 h-12 text-purple-500 mx-auto mb-4"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <h4 class="text-xl font-semibold text-gray-900 mb-2">Avis Transparents</h4>
+                    <p class="text-gray-600">
+                        Nous nous engageons à vous fournir des avis honnêtes et impartiaux, basés sur des recherches approfondies et l'expérience utilisateur.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md transform transition-transform duration-300 hover:scale-105">
+                    <!-- Icône de cœur Lucide -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart w-12 h-12 text-purple-500 mx-auto mb-4"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                    <h4 class="text-xl font-semibold text-gray-900 mb-2">Votre Satisfaction</h4>
+                    <p class="text-gray-600">
+                        Notre priorité est votre entière satisfaction. Nous sommes là pour vous aider à prendre les meilleures décisions d'achat.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Appel à l'action pour la newsletter -->
+    <section id="newsletter" class="container mx-auto px-6 py-16 text-center">
+        <div class="bg-white p-8 rounded-2xl shadow-xl max-w-3xl mx-auto">
+            <h3 class="text-3xl font-bold text-gray-900 mb-4">
+                Ne Manquez Plus Aucune <span class="text-purple-600">Bonne Affaire</span> !
+            </h3>
+            <p class="text-lg text-gray-600 mb-6">
+                Inscrivez-vous à notre newsletter pour recevoir nos dernières sélections, offres exclusives et conseils directement dans votre boîte mail.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <input
+                    type="email"
+                    placeholder="Votre adresse email"
+                    class="p-4 rounded-full border border-gray-300 w-full sm:w-2/3 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-300"
+                />
+                <button class="bg-purple-600 text-white px-8 py-4 rounded-full text-lg font-bold shadow-lg hover:bg-purple-700 transition duration-300 ease-in-out transform hover:-translate-y-1 w-full sm:w-auto">
+                    S'inscrire
+                    <!-- Icône d'enveloppe Lucide -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail inline-block ml-2 w-5 h-5"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pied de page -->
+    <footer class="bg-gray-800 text-white p-8 text-center rounded-t-xl">
+        <div class="container mx-auto">
+            <p class="mb-4">&copy; 2025 VotreAffilié. Tous droits réservés.</p>
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="#" class="text-gray-300 hover:text-purple-400 transition duration-300">Politique de Confidentialité</a>
+                <a href="#" class="text-gray-300 hover:text-purple-400 transition duration-300">Mentions Légales</a>
+                <a href="#" class="text-gray-300 hover:text-purple-400 transition duration-300">FAQ</a>
+            </div>
+            <p class="text-gray-400 text-sm">
+                <!-- Icône de récompense Lucide pour l'affiliation -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-award inline-block mr-1 w-4 h-4"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17.232 22 12 18.5 6.768 22 8.523 12.89 2 8.67l7.854-.545L12 2l2.146 6.125L22 8.67Z"/></svg>
+                En tant que Partenaire Amazon, je réalise un bénéfice sur les achats remplissant les conditions requises.
+                Les liens de produits présents sur ce site peuvent être des liens affiliés.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialise les icônes Lucide sur la page
+        lucide.createIcons();
+
+        // Logique de bascule du menu mobile
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                // Bascule la classe 'hidden' pour afficher/masquer le menu
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Fonction asynchrone pour charger et afficher les produits
+        async function loadProducts() {
+            const loadingEl = document.getElementById('products-loading');
+            const containerEl = document.getElementById('products-container');
+            const errorEl = document.getElementById('products-error');
+
+            // Affiche l'état de chargement et cache le conteneur de produits et l'erreur
+            loadingEl.classList.remove('hidden');
+            containerEl.classList.add('hidden');
+            errorEl.classList.add('hidden');
+
+            try {
+                // Données de produits mockées (simulent une réponse API)
+                const mockProducts = [
+                    {
+                        title: "Casque Bluetooth Sans Fil Sony WH-1000XM5",
+                        description: "Le casque Bluetooth Sony WH-1000XM5 offre une réduction de bruit de pointe, un son exceptionnel et un confort optimal pour des heures d'écoute. Idéal pour les voyages et le travail.",
+                        price: "349,00 €",
+                        image_url: "https://images-na.ssl-images-amazon.com/images/I/71rQ6N4dKPL._AC_SL1500_.jpg",
+                        amazon_link: "https://www.amazon.fr/Sony-WH-1000XM5-r%C3%A9duction-d%C3%A9couteurs-intelligente/dp/B09V7B1C6N/"
+                    },
+                    {
+                        title: "Écran PC Gaming ASUS TUF Gaming VG27AQ1A",
+                        description: "Moniteur gaming de 27 pouces avec une résolution QHD (2560x1440), un taux de rafraîchissement de 170Hz et un temps de réponse de 1ms pour une expérience de jeu fluide et immersive.",
+                        price: "299,99 €",
+                        image_url: "https://images-na.ssl-images-amazon.com/images/I/71Xm3z1W8QL._AC_SL1500_.jpg",
+                        amazon_link: "https://www.amazon.fr/ASUS-VG27AQ1A-Gaming-Moniteur-inclinable/dp/B08V8R5M4J/"
+                    },
+                    {
+                        title: "Robot Aspirateur Laveur Roborock S8 Pro Ultra",
+                        description: "Le Roborock S8 Pro Ultra est un robot aspirateur et laveur intelligent avec station de vidage automatique, séchage à l'air chaud et brosses duo pour un nettoyage impeccable.",
+                        price: "1 299,00 €",
+                        image_url: "https://images-na.ssl-images-amazon.com/images/I/71b2d0C2fNL._AC_SL1500_.jpg",
+                        amazon_link: "https://www.amazon.fr/Roborock-S8-Pro-Ultra-Auto-vidange/dp/B0BRJ81Y8P/"
+                    },
+                     {
+                        title: "Apple Watch Series 9 GPS + Cellular",
+                        description: "La dernière Apple Watch avec des fonctionnalités de santé avancées, un écran plus lumineux, et la possibilité de passer des appels et d'envoyer des messages sans votre iPhone.",
+                        price: "499,00 €",
+                        image_url: "https://images-na.ssl-images-amazon.com/images/I/71X8F50R7PL._AC_SL1500_.jpg",
+                        amazon_link: "https://www.amazon.fr/Apple-Watch-Series-Cellular-Aluminium/dp/B0CHX5T47V/"
+                    },
+                    {
+                        title: "Machine à Café Nespresso Vertuo Pop De'Longhi",
+                        description: "Compacte et colorée, la Nespresso Vertuo Pop prépare des cafés de toutes tailles, du court au mug, avec une simple pression sur un bouton. Idéale pour les amateurs de café variés.",
+                        price: "89,99 €",
+                        image_url: "https://images-na.ssl-images-amazon.com/images/I/61Nlq+X2YyL._AC_SL1500_.jpg",
+                        amazon_link: "https://www.amazon.fr/Nespresso-Vertuo-Pop-DeLonghi-Capsules/dp/B0BDXG6R8S/"
+                    },
+                    {
+                        title: "Fire TV Stick 4K Max (2e génération)",
+                        description: "Le plus puissant des Fire TV Stick, avec Wi-Fi 6E, prise en charge de la 4K Ultra HD, Dolby Vision, HDR10+ et Dolby Atmos pour une expérience de streaming fluide et immersive.",
+                        price: "79,99 €",
+                        image_url: "https://images-na.ssl-images-amazon.com/images/I/51wXFp9oEQL._AC_SL1000_.jpg",
+                        amazon_link: "https://www.amazon.fr/fire-tv-stick-4k-max-telecommande-vocale-alexa/dp/B0BL5X8H5Q/"
+                    }
+                ];
+
+                // Simuler un délai réseau pour voir l'état de chargement
+                await new Promise(resolve => setTimeout(resolve, 1000)); 
+
+                // Afficher les produits
+                renderProducts(mockProducts);
+                loadingEl.classList.add('hidden');
+                containerEl.classList.remove('hidden');
+            } catch (error) {
+                console.error('Error loading products:', error);
+                loadingEl.classList.add('hidden');
+                errorEl.classList.remove('hidden');
+            }
+        }
+
+        // Fonction pour rendre les produits dans le DOM
+        function renderProducts(products) {
+            const container = document.getElementById('products-container');
+            
+            // Si aucun produit n'est disponible, affiche un message
+            if (products.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-12">
+                        <div class="text-gray-400 mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-package w-16 h-16 mx-auto"><path d="M16.5 9.4 7.55 4.24"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.29,7 12,12 20.71,7"/><line x1="12" x2="12" y1="22" y2="12"/></svg>
+                        </div>
+                        <p class="text-gray-600 text-lg">Aucun produit disponible pour le moment</p>
+                        <p class="text-gray-500">Revenez bientôt pour découvrir nos dernières sélections !</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Génère le HTML pour chaque produit et l'insère dans le conteneur
+            container.innerHTML = products.map(product => `
+                <div class="bg-white rounded-2xl shadow-xl p-6 transition-transform duration-300 hover:scale-105 flex flex-col justify-between">
+                    <div>
+                        <img src="${escapeHtml(product.image_url)}" 
+                             alt="${escapeHtml(product.title)}" 
+                             class="w-full h-55 object-cover rounded-xl mb-4 shadow-md"
+                             onerror="this.src='https://placehold.co/400x300/a78bfa/ffffff?text=Image+Non+Disponible'"/>
+                        <h4 class="text-2xl font-bold text-gray-900 mb-2">${escapeHtml(product.title)}</h4>
+                        <p class="text-gray-600 mb-4 text-justify">
+                            ${escapeHtml(product.description)}
+                        </p>
+                        ${product.price ? `<p class="text-lg font-semibold text-purple-600 mb-4">${escapeHtml(product.price)}</p>` : ''}
+                    </div>
+                    <a href="${escapeHtml(product.amazon_link)}" 
+                        target="_blank" 
+                        class="mt-auto bg-purple-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-purple-600 transition duration-300 ease-in-out shadow-md text-center">
+                        Voir sur Amazon
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart inline-block ml-2 w-4 h-4"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                    </a>
+                </div>
+            `).join('');
+
+            // Réinitialise les icônes Lucide pour le nouveau contenu dynamiquement ajouté
+            lucide.createIcons();
+        }
+
+        // Fonction utilitaire pour échapper le HTML, prévenant les attaques XSS
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+        }
+
+        // Charge les produits lorsque le DOM est entièrement chargé
+        document.addEventListener('DOMContentLoaded', loadProducts);
+    </script>
+</body>
+</html>
