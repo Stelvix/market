@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajouter un produit Amazon</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-purple-50 min-h-screen flex items-center justify-center">
+
+  <div class="w-full max-w-md bg-white p-8 rounded-xl shadow-md">
+    <h1 class="text-2xl font-bold text-purple-700 text-center mb-6">Ajout Produit Amazon</h1>
+
+    <form id="ajoutForm" class="space-y-4">
+      <input type="url" name="lien" placeholder="Lien affilié Amazon" required
+             class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
+
+      <input type="text" name="description" placeholder="Description du produit" required
+             class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
+
+      <button type="submit"
+              class="w-full bg-purple-600 text-white font-semibold py-2 rounded-md hover:bg-purple-700 transition">
+        Envoyer
+      </button>
+    </form>
+  </div>
+
+  <script>
+    // Protection par mot de passe simple (JS côté client)
+    const motDePasse = prompt("Mot de passe administrateur :");
+    if (motDePasse !== "steeven123") {
+      alert("Accès refusé");
+      document.body.innerHTML = "<h2 class='text-center text-red-600 mt-10 text-2xl'>Accès refusé.</h2>";
+    }
+
+    document.getElementById("ajoutForm")?.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const form = new FormData(e.target);
+      const data = {
+        lien: form.get("lien"),
+        description: form.get("description")
+      };
+
+      try {
+        const res = await fetch("https://TON_N8N_URL/webhook/ajout-produit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer steeven123"
+          },
+          body: JSON.stringify(data)
+        });
+
+        if (res.ok) {
+          alert("Produit ajouté avec succès !");
+          e.target.reset();
+        } else {
+          alert("Erreur lors de l'envoi.");
+        }
+      } catch (error) {
+        alert("Une erreur est survenue : " + error);
+      }
+    });
+  </script>
+</body>
+</html>
