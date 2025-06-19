@@ -12,53 +12,55 @@
     <h1 class="text-2xl font-bold text-purple-700 text-center mb-6">Ajout Produit Amazon</h1>
 
     <form id="ajoutForm" class="space-y-4">
-      <input type="url" name="lien" placeholder="Lien affilié Amazon" required
+      <input id="lien" type="url" name="lien" placeholder="Lien affilié Amazon" required
              class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
 
-      <input type="text" name="description" placeholder="Description du produit" required
+      <input id="description" type="text" name="description" placeholder="Description du produit" required
              class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
 
-       <input type="file" name="image" placeholder="image" required
-             class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
+      <!-- Optionnel : champ image, on ne l'envoie pas pour l'instant -->
+      <input id="image" type="file" name="image" placeholder="Image (non envoyé actuellement)"
+             class="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-500">
 
       <button type="submit"
               class="w-full bg-purple-600 text-white font-semibold py-2 rounded-md hover:bg-purple-700 transition">
         Envoyer
       </button>
     </form>
+  </div>
 
-<script>
-  const form = document.getElementById("productForm");
+  <script>
+    const form = document.getElementById("ajoutForm");
 
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-    const lien = document.getElementById("lien").value;
-    const description = document.getElementById("description").value;
-    const image = document.getElementById("image").value;
+      const lien = document.getElementById("lien").value;
+      const description = document.getElementById("description").value;
 
-    fetch("https://stelvi.app.n8n.cloud/webhook/117b15e9-5138-4ee6-894c-d1a5a5dae654", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer steeven123"
-      },
-      body: JSON.stringify({
-        lien: lien,
-        description: description,
-        image: image
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
+      fetch("https://stelvi.app.n8n.cloud/webhook/117b15e9-5138-4ee6-894c-d1a5a5dae654", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer steeven123"
+        },
+        body: JSON.stringify({
+          lien: lien,
+          description: description
+        }),
+      })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Erreur " + response.status);
+        }
         alert("Produit envoyé avec succès !");
         form.reset();
       })
       .catch((error) => {
         alert("Erreur lors de l'envoi : " + error.message);
       });
-  });
-</script>
+    });
+  </script>
 
 </body>
 </html>
