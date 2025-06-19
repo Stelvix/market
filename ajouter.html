@@ -46,7 +46,7 @@
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            // "Authorization": "Bearer steeven123",  // Enlève ce header pour tester CORS et erreurs fetch
+            "Authorization": "Bearer steeven123"
           },
           body: JSON.stringify(data),
           mode: "cors"  // Assure que la requête est en CORS
