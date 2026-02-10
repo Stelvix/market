@@ -1,299 +1,158 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-
-
-
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bons plans Amazon</title>
-    <!-- Tailwind CSS CDN pour un stylisme rapide et responsive -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Steeven Recommends : sélection de produits Amazon utiles et bien notés."
+    />
+    <title>Steeven Recommends | Bons plans Amazon</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons CDN pour des icônes légères et personnalisables -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-    <style>
-        /* Styles personnalisés pour la police de caractères Inter */
-        body {
-            font-family: "Inter", sans-serif;
-        }
-    </style>
-</head>
-    <!--Start of Tawk.to Script-->
-<!--<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/68515d8601479d190ef50992/1itutal6u';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>-->
-   <script src="//code.tidio.co/2stg2yyxpy0rhsmqeeemqmnmlrhfi0lf.js" async></script>
-<!--End of Tawk.to Script-->
-<body class="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50 font-sans antialiased text-gray-800">
+    <script src="https://unpkg.com/lucide@latest"></script>
+  </head>
+  <body class="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50 text-gray-800 antialiased">
+    <header class="sticky top-0 z-20 bg-white/90 backdrop-blur border-b border-purple-100">
+      <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6" aria-label="Navigation principale">
+        <a href="#accueil" class="flex items-center gap-2 text-lg font-extrabold tracking-tight text-gray-900">
+          <i data-lucide="shopping-cart" class="h-6 w-6 text-purple-600" aria-hidden="true"></i>
+          <span><span class="text-purple-600">Steeven</span> Recommends</span>
+        </a>
 
-    <!-- Barre de navigation principale -->
-    <nav class="bg-white shadow-lg p-4 flex justify-between items-center rounded-b-xl">
-        <div class="flex items-center space-x-2">
-            <!-- Icône de panier Lucide pour le logo -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart text-purple-600 h-8 w-8"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-            <h1 class="text-3xl font-extrabold text-gray-900">
-                <span class="text-purple-600">Steeven </span>Recommends
-            </h1>
-        </div>
-        <!-- Liens de navigation pour les écrans de bureau -->
-        <div class="hidden md:flex space-x-6">
-            <a href="#accueil" class="text-gray-700 hover:text-purple-600 font-semibold transition duration-300">Accueil</a>
-            <a href="#produits" class="text-gray-700 hover:text-purple-600 font-semibold transition duration-300">Produits Phares</a>
-            <a href="#apropos" class="text-gray-700 hover:text-purple-600 font-semibold transition duration-300">À Propos</a>
-            <a href="#newsletter" class="text-gray-700 hover:text-purple-600 font-semibold transition duration-300">Contact</a>
-        </div>
-        <!-- Bouton de menu mobile -->
-        <button id="mobile-menu-button" class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
-            <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        <button
+          id="mobile-menu-button"
+          class="rounded-md p-2 md:hidden focus:outline-none focus:ring-2 focus:ring-purple-500"
+          type="button"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          aria-label="Ouvrir le menu"
+        >
+          <i data-lucide="menu" class="h-6 w-6"></i>
         </button>
-    </nav>
 
-    <!-- Menu mobile (caché par défaut) -->
-    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg py-4 rounded-b-xl">
-        <a href="#accueil" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition duration-300">Accueil</a>
-        <a href="#produits" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition duration-300">Produits Phares</a>
-        <a href="#apropos" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition duration-300">À Propos</a>
-     </div>
+        <ul class="hidden items-center gap-6 md:flex">
+          <li><a href="#accueil" class="font-medium hover:text-purple-600">Accueil</a></li>
+          <li><a href="#produits" class="font-medium hover:text-purple-600">Produits</a></li>
+          <li><a href="#apropos" class="font-medium hover:text-purple-600">À propos</a></li>
+          <li><a href="#contact" class="font-medium hover:text-purple-600">Contact</a></li>
+        </ul>
+      </nav>
 
-    <!-- Section d'accueil (Hero Section) -->
-    <section id="accueil" class="container mx-auto px-6 py-20 text-center">
-        <div class="bg-white p-8 rounded-2xl shadow-xl max-w-4xl mx-auto transform transition-transform duration-500 hover:scale-105">
-            <h2 class="text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
-                Découvrez <span class="text-purple-600">Les Meilleures Offres</span> et Produits Essentiels
-            </h2>
-            <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-                Nous sélectionnons méticuleusement les meilleurs produits Amazon pour vous simplifier la vie et vous garantir des achats malins et fiables.
-            </p>
-            <button  class="bg-purple-600 text-white px-8 py-4 rounded-full text-lg font-bold shadow-lg hover:bg-purple-700 transition duration-300 ease-in-out transform hover:-translate-y-1">
-               <a href="#produits">Explorer les Offres</a> 
-                <!-- Icône d'étoile Lucide -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star inline-block ml-2 w-5 h-5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            </button>
+      <ul id="mobile-menu" class="mx-4 mb-4 hidden rounded-xl bg-white p-3 shadow md:hidden">
+        <li><a href="#accueil" class="block rounded-md px-3 py-2 hover:bg-purple-50">Accueil</a></li>
+        <li><a href="#produits" class="block rounded-md px-3 py-2 hover:bg-purple-50">Produits</a></li>
+        <li><a href="#apropos" class="block rounded-md px-3 py-2 hover:bg-purple-50">À propos</a></li>
+        <li><a href="#contact" class="block rounded-md px-3 py-2 hover:bg-purple-50">Contact</a></li>
+      </ul>
+    </header>
+
+    <main>
+      <section id="accueil" class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-20">
+        <div class="rounded-3xl bg-white p-8 text-center shadow-xl sm:p-12">
+          <p class="mb-3 text-sm font-semibold uppercase tracking-widest text-purple-700">Sélection Amazon</p>
+          <h1 class="text-3xl font-black leading-tight text-gray-900 sm:text-5xl">
+            Des produits utiles, testés et
+            <span class="text-purple-600">recommandés avec transparence</span>
+          </h1>
+          <p class="mx-auto mt-5 max-w-2xl text-lg text-gray-600">
+            Gagne du temps avec une sélection claire : qualité, avis vérifiés et rapport qualité-prix.
+          </p>
+          <a
+            href="#produits"
+            class="mt-8 inline-flex items-center gap-2 rounded-full bg-purple-600 px-7 py-3 font-bold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-purple-700"
+          >
+            Voir les offres
+            <i data-lucide="arrow-right" class="h-4 w-4" aria-hidden="true"></i>
+          </a>
         </div>
-    </section>
+      </section>
 
-    <!-- Section des produits phares -->
-    <section id="produits" class="container mx-auto px-6 py-16">
-        <h3 class="text-4xl font-bold text-center text-gray-900 mb-12">
-            Nos <span class="text-purple-600">Produits Phares</span> du Moment
-        </h3>
-        
-        <!-- Conteneur des produits -->
-        <div id="products-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            <!-- Produit 1 -->
-            <div class="bg-white rounded-2xl shadow-xl p-6 transition-transform duration-300 hover:scale-105 flex flex-col justify-between">
-                <div>
-                    <img src="https://m.media-amazon.com/images/I/718NCZafbRL._AC_SL1500_.jpg" 
-                         alt="Chaussons d’été PERLETTI pour homme" 
-                         class="w-full h-55 object-cover rounded-xl mb-4 shadow-md"
-                         onerror="this.src='https://placehold.co/400x300/a78bfa/ffffff?text=Image+Non+Disponible'"/>
-                    <h4 class="text-2xl font-bold text-gray-900 mb-2">Chaussons d’été PERLETTI pour homme</h4>
-                    <p class="text-gray-600 mb-4 text-justify">
-                       Un accessoire alliant confort et design original, disponible en plusieurs coloris classiques et modernes — beige, gris, noir, bicolore ou camouflage — pour s’adapter à tous les styles.
-                    </p>
-                 </div>
-                <a href="https://amzn.to/45TfHl5" 
-                    target="_blank" 
-                    class="mt-auto bg-purple-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-purple-600 transition duration-300 ease-in-out shadow-md text-center">
-                    Voir sur Amazon
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart inline-block ml-2 w-4 h-4"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-                </a>
-            </div>
+      <section id="produits" class="mx-auto max-w-6xl px-4 pb-16 sm:px-6">
+        <h2 class="mb-8 text-center text-3xl font-extrabold text-gray-900 sm:text-4xl">
+          Produits <span class="text-purple-600">phares</span>
+        </h2>
 
-            <!-- Produit 2 -->
-            <div class="bg-white rounded-2xl shadow-xl p-6 transition-transform duration-300 hover:scale-105 flex flex-col justify-between">
-                <div>
-                    <img src="https://www.vibs.com/on/demandware.static/-/Sites-Bonobo_master/default/dwfe9867e6/short-droit-en-velours-vert-kaki-femme-vue6-36125292160314016.jpg" 
-                         alt="Shorts casual en velours" 
-                         class="w-full h-55 object-cover rounded-xl mb-4 shadow-md"
-                         onerror="this.src='https://placehold.co/400x300/a78bfa/ffffff?text=Image+Non+Disponible'"/>
-                    <h4 class="text-2xl font-bold text-gray-900 mb-2">Shorts casual en velours</h4>
-                    <p class="text-gray-600 mb-4 text-justify">
-                       Shorts casual en velours côtelé pour homme Comilaka avec poches cargo — confortables et légers, parfaits pour le jogging, la course et l'été.
-                    </p>
-                 </div>
-                <a href="https://amzn.to/3HF6tiu" 
-                    target="_blank" 
-                    class="mt-auto bg-purple-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-purple-600 transition duration-300 ease-in-out shadow-md text-center">
-                    Voir sur Amazon
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart inline-block ml-2 w-4 h-4"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-                </a>
-            </div>
- 
-            <!-- Produit 3 -->
-            <div class="bg-white rounded-2xl shadow-xl p-6 transition-transform duration-300 hover:scale-105 flex flex-col justify-between">
-                <div>
-                    <img src="https://static5.hurtel.com/hpeciai/d2bec192578029bd657219cb254a90a6/eng_pm_JBL-Wave-Beam-wireless-in-ear-headphones-Bluetooth-5-2-IP54-IPX2-black-165351_2.png" 
-                         alt="JBL Wave Beam, Wireless In-Ear Headphones" 
-                         class="w-full h-55 object-cover rounded-xl mb-4 shadow-md"
-                         onerror="this.src='https://placehold.co/400x300/a78bfa/ffffff?text=Image+Non+Disponible'"/>
-                    <h4 class="text-2xl font-bold text-gray-900 mb-2">JBL Wave Beam, Wireless In-Ear Headphones</h4>
-                    <p class="text-gray-600 mb-4 text-justify">
-                       Écouteurs intra-auriculaires sans fil JBL Wave Beam — son clair, design compact et confortable pour une écoute nomade.
-                    </p>
-                 </div>
-                <a href="https://amzn.to/43VAy4F" 
-                    target="_blank" 
-                    class="mt-auto bg-purple-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-purple-600 transition duration-300 ease-in-out shadow-md text-center">
-                    Voir sur Amazon
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart inline-block ml-2 w-4 h-4"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-                </a>
-            </div>
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <article class="flex h-full flex-col rounded-2xl bg-white p-6 shadow-lg transition hover:-translate-y-1 hover:shadow-xl">
+            <img src="https://placehold.co/600x400/e9d5ff/4c1d95?text=Produit+1" alt="Casque audio sans fil" class="mb-4 h-44 w-full rounded-xl object-cover" loading="lazy" />
+            <h3 class="text-xl font-bold text-gray-900">Casque audio sans fil</h3>
+            <p class="mt-3 flex-1 text-gray-600">Excellente autonomie, confort longue durée, réduction de bruit performante.</p>
+            <a href="https://amazon.fr" target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-purple-600 px-5 py-3 font-semibold text-white hover:bg-purple-700">
+              Voir sur Amazon <i data-lucide="external-link" class="h-4 w-4" aria-hidden="true"></i>
+            </a>
+          </article>
 
-            <!-- Produit 4 -->
-            <div class="bg-white rounded-2xl shadow-xl p-6 transition-transform duration-300 hover:scale-105 flex flex-col justify-between">
-                <div>
-                    <img src="https://m.media-amazon.com/images/I/31cpFRAHdvL.jpg" 
-                         alt="Playstation Sony, 5 Édition Numérique" 
-                         class="w-full h-55 object-cover rounded-xl mb-4 shadow-md"
-                         onerror="this.src='https://placehold.co/400x300/a78bfa/ffffff?text=Image+Non+Disponible'"/>
-                    <h4 class="text-2xl font-bold text-gray-900 mb-2">Playstation Sony, 5 Édition Numérique, PS5 avec 1 Manette Sans Fil DualSense, Couleur : Blanche</h4>
-                    <p class="text-gray-600 mb-4 text-justify">
-                        PlayStation 5 Édition Digitale sans lecteur Blu-Ray, conçue pour une expérience de jeu immersive avec vos jeux PS5 et PS4.
-                    </p>
-                 </div>
-                <a href="https://amzn.to/402uupS" 
-                    target="_blank" 
-                    class="mt-auto bg-purple-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-purple-600 transition duration-300 ease-in-out shadow-md text-center">
-                    Voir sur Amazon
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart inline-block ml-2 w-4 h-4"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-                </a>
-            </div>
+          <article class="flex h-full flex-col rounded-2xl bg-white p-6 shadow-lg transition hover:-translate-y-1 hover:shadow-xl">
+            <img src="https://placehold.co/600x400/ddd6fe/4c1d95?text=Produit+2" alt="Lampe de bureau LED" class="mb-4 h-44 w-full rounded-xl object-cover" loading="lazy" />
+            <h3 class="text-xl font-bold text-gray-900">Lampe de bureau LED</h3>
+            <p class="mt-3 flex-1 text-gray-600">Éclairage réglable, design minimaliste, parfait pour le travail et les études.</p>
+            <a href="https://amazon.fr" target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-purple-600 px-5 py-3 font-semibold text-white hover:bg-purple-700">
+              Voir sur Amazon <i data-lucide="external-link" class="h-4 w-4" aria-hidden="true"></i>
+            </a>
+          </article>
 
-            <!-- Produit 5 -->
-            <div class="bg-white rounded-2xl shadow-xl p-6 transition-transform duration-300 hover:scale-105 flex flex-col justify-between">
-                <div>
-                    <img src="https://media.electroplanet.ma/media/catalog/product/cache/fe7218fa206f7a550a07f49b9ea052d6/2/9/2982123-_6_.jpg" 
-                         alt="Machine à Café Nespresso Vertuo Pop De'Longhi" 
-                         class="w-full h-55 object-cover rounded-xl mb-4 shadow-md"
-                         onerror="this.src='https://placehold.co/400x300/a78bfa/ffffff?text=Image+Non+Disponible'"/>
-                    <h4 class="text-2xl font-bold text-gray-900 mb-2">Machine à Café Nespresso Vertuo Pop De'Longhi</h4>
-                    <p class="text-gray-600 mb-4 text-justify">
-                        Compacte et colorée, la Nespresso Vertuo Pop prépare des cafés de toutes tailles, du court au mug, avec une simple pression sur un bouton. Idéale pour les amateurs de café variés.
-                    </p>
-                 </div>
-                <a href="https://amzn.to/4jV7Ney" 
-                    target="_blank" 
-                    class="mt-auto bg-purple-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-purple-600 transition duration-300 ease-in-out shadow-md text-center">
-                    Voir sur Amazon
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart inline-block ml-2 w-4 h-4"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-                </a>
-            </div>
-
-            <!-- Produit 6 -->
-            <div class="bg-white rounded-2xl shadow-xl p-6 transition-transform duration-300 hover:scale-105 flex flex-col justify-between">
-                <div>
-                    <img src="https://i.ebayimg.com/images/g/yf4AAOSw031i-MNa/s-l1200.jpg" 
-                         alt="Fire TV Stick 4K Max (2e génération)" 
-                         class="w-full h-55 object-cover rounded-xl mb-4 shadow-md"
-                         onerror="this.src='https://placehold.co/400x300/a78bfa/ffffff?text=Image+Non+Disponible'"/>
-                    <h4 class="text-2xl font-bold text-gray-900 mb-2">Fire TV Stick 4K Max (2e génération)</h4>
-                    <p class="text-gray-600 mb-4 text-justify">
-                        Le plus puissant des Fire TV Stick, avec Wi-Fi 6E, prise en charge de la 4K Ultra HD, Dolby Vision, HDR10+ et Dolby Atmos pour une expérience de streaming fluide et immersive.
-                    </p>
-                 </div>
-                <a href="https://amzn.to/3ZZ6m7C" 
-                    target="_blank" 
-                    class="mt-auto bg-purple-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-purple-600 transition duration-300 ease-in-out shadow-md text-center">
-                    Voir sur Amazon
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart inline-block ml-2 w-4 h-4"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-                </a>
-            </div>
+          <article class="flex h-full flex-col rounded-2xl bg-white p-6 shadow-lg transition hover:-translate-y-1 hover:shadow-xl">
+            <img src="https://placehold.co/600x400/c4b5fd/4c1d95?text=Produit+3" alt="Batterie externe USB-C" class="mb-4 h-44 w-full rounded-xl object-cover" loading="lazy" />
+            <h3 class="text-xl font-bold text-gray-900">Batterie externe USB-C</h3>
+            <p class="mt-3 flex-1 text-gray-600">Charge rapide, grande capacité, format compact pour les déplacements.</p>
+            <a href="https://amazon.fr" target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-purple-600 px-5 py-3 font-semibold text-white hover:bg-purple-700">
+              Voir sur Amazon <i data-lucide="external-link" class="h-4 w-4" aria-hidden="true"></i>
+            </a>
+          </article>
         </div>
-    </section>
+      </section>
 
-    <!-- Section "Pourquoi nous faire confiance" -->
-    <section id="apropos" class="container mx-auto px-6 py-16">
-        <div class="bg-purple-100 p-8 rounded-2xl shadow-xl text-center">
-            <h3 class="text-4xl font-bold text-purple-800 mb-8">
-                Pourquoi Nous Faire <span class="text-purple-600">Confiance</span> ?
-            </h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-xl shadow-md transform transition-transform duration-300 hover:scale-105">
-                    <!-- Icône de récompense Lucide -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-award w-12 h-12 text-purple-500 mx-auto mb-4"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17.232 22 12 18.5 6.768 22 8.523 12.89 2 8.67l7.854-.545L12 2l2.146 6.125L22 8.67Z"/></svg>
-                    <h4 class="text-xl font-semibold text-gray-900 mb-2">Sélection Rigoureuse</h4>
-                    <p class="text-gray-600">
-                        Nous testons et comparons chaque produit pour ne retenir que le meilleur, en nous basant sur la qualité, la performance et le rapport qualité-prix.
-                    </p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md transform transition-transform duration-300 hover:scale-105">
-                    <!-- Icône d'étoile Lucide -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-12 h-12 text-purple-500 mx-auto mb-4"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                    <h4 class="text-xl font-semibold text-gray-900 mb-2">Avis Transparents</h4>
-                    <p class="text-gray-600">
-                        Nous nous engageons à vous fournir des avis honnêtes et impartiaux, basés sur des recherches approfondies et l'expérience utilisateur.
-                    </p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md transform transition-transform duration-300 hover:scale-105">
-                    <!-- Icône de cœur Lucide -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart w-12 h-12 text-purple-500 mx-auto mb-4"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-                    <h4 class="text-xl font-semibold text-gray-900 mb-2">Votre Satisfaction</h4>
-                    <p class="text-gray-600">
-                        Notre priorité est votre entière satisfaction. Nous sommes là pour vous aider à prendre les meilleures décisions d'achat.
-                    </p>
-                </div>
-            </div>
+      <section id="apropos" class="mx-auto max-w-6xl px-4 pb-16 sm:px-6">
+        <div class="rounded-3xl bg-purple-100 p-8 text-center sm:p-10">
+          <h2 class="text-3xl font-extrabold text-purple-900">Pourquoi nous faire confiance ?</h2>
+          <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+            <article class="rounded-2xl bg-white p-6 shadow">
+              <i data-lucide="badge-check" class="mx-auto h-10 w-10 text-purple-600" aria-hidden="true"></i>
+              <h3 class="mt-3 text-xl font-bold">Sélection rigoureuse</h3>
+              <p class="mt-2 text-gray-600">Nous privilégions les produits fiables et réellement utiles.</p>
+            </article>
+            <article class="rounded-2xl bg-white p-6 shadow">
+              <i data-lucide="star" class="mx-auto h-10 w-10 text-purple-600" aria-hidden="true"></i>
+              <h3 class="mt-3 text-xl font-bold">Avis transparents</h3>
+              <p class="mt-2 text-gray-600">Chaque recommandation est justifiée de façon claire et honnête.</p>
+            </article>
+            <article class="rounded-2xl bg-white p-6 shadow">
+              <i data-lucide="heart" class="mx-auto h-10 w-10 text-purple-600" aria-hidden="true"></i>
+              <h3 class="mt-3 text-xl font-bold">Focus utilisateur</h3>
+              <p class="mt-2 text-gray-600">Ton besoin réel passe avant le marketing.</p>
+            </article>
+          </div>
         </div>
-    </section>
+      </section>
 
-  <!-- Section Appel à l'action pour la newsletter -->
-    <section id="newsletter" class="container mx-auto px-6 py-16 text-center">
-        <div class="bg-white p-8 rounded-2xl shadow-xl max-w-3xl mx-auto">
-            <h3 class="text-3xl font-bold text-gray-900 mb-4">
-                Des offres exclusives ? Contactez-nous !
-            </h3>
-            <p class="text-lg text-gray-600 mb-6">
-                Pour recevoir nos dernières sélections, offres exclusives et conseils directement dans votre boîte mail, envoyez-nous un message :
-            </p>
-            <p class="text-xl font-bold text-purple-600">
-                <a href="mailto:contact@steevenrecommends.com" class="hover:underline">
-                    jeunepro@outlook.com
-                </a>
-            </p>
+      <section id="contact" class="mx-auto max-w-4xl px-4 pb-20 text-center sm:px-6">
+        <div class="rounded-3xl bg-white p-8 shadow-xl">
+          <h2 class="text-3xl font-extrabold text-gray-900">Contact</h2>
+          <p class="mt-3 text-gray-600">Une question ou une suggestion de produit ?</p>
+          <a href="mailto:jeunepro@outlook.com" class="mt-5 inline-flex items-center gap-2 rounded-full bg-purple-50 px-6 py-3 font-semibold text-purple-700 hover:bg-purple-100">
+            <i data-lucide="mail" class="h-4 w-4" aria-hidden="true"></i>
+            jeunepro@outlook.com
+          </a>
         </div>
-    </section>
+      </section>
+    </main>
 
-    <!-- Pied de page -->
-    <footer class="bg-gray-800 text-white p-8 text-center rounded-t-xl">
-        <div class="container mx-auto">
-            <p class="mb-4">&copy; 2025 Votre Affilié. Tous droits réservés.</p>
-            <div class="flex justify-center space-x-6 mb-4">
-               </div>
-            <p class="text-gray-400 text-sm">
-                <!-- Icône de récompense Lucide pour l'affiliation -->
-                
-            </p>
-        </div>
+    <footer class="bg-gray-900 px-4 py-8 text-center text-sm text-gray-300">
+      <p>© 2026 Steeven Recommends — Tous droits réservés.</p>
     </footer>
 
     <script>
-        // Initialise les icônes Lucide sur la page
-        lucide.createIcons();
+      lucide.createIcons();
 
-        // Logique de bascule du menu mobile
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
 
-        if (mobileMenuButton && mobileMenu) {
-            mobileMenuButton.addEventListener('click', () => {
-                // Bascule la classe 'hidden' pour afficher/masquer le menu
-                mobileMenu.classList.toggle('hidden');
-            });
-        }
+      mobileMenuButton?.addEventListener('click', () => {
+        mobileMenu?.classList.toggle('hidden');
+        const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+        mobileMenuButton.setAttribute('aria-expanded', String(!isExpanded));
+      });
     </script>
-</body>
+  </body>
 </html>
-
-
-
