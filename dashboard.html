@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard sécurisé | Steeven Recommends</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script defer src="assets/js/products.js"></script>
+  </head>
+  <body class="min-h-screen bg-slate-950 text-slate-100">
+    <main class="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+      <section class="mb-8 rounded-2xl border border-slate-800 bg-slate-900 p-6 shadow-2xl">
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <p class="text-xs uppercase tracking-wider text-purple-300">Steeven Recommends</p>
+            <h1 class="text-2xl font-black">Dashboard sécurisé produits</h1>
+            <p class="mt-2 text-sm text-slate-300">Connexion locale sécurisée + gestion des liens affiliés Amazon.</p>
+          </div>
+          <a href="index.html" class="rounded-full border border-slate-700 px-4 py-2 text-sm font-semibold hover:bg-slate-800">Retour au site</a>
+        </div>
+      </section>
+
+      <section id="loginBox" class="mx-auto max-w-xl rounded-2xl border border-slate-800 bg-slate-900 p-6 shadow-xl">
+        <h2 class="text-xl font-bold">Connexion admin</h2>
+        <p class="mt-2 text-sm text-slate-300">Mot de passe requis pour accéder à l'ajout de produits.</p>
+
+        <form id="loginForm" class="mt-5 space-y-4">
+          <div>
+            <label for="password" class="mb-1 block text-sm font-semibold">Mot de passe</label>
+            <input id="password" type="password" class="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2" required />
+          </div>
+          <button class="w-full rounded-lg bg-purple-600 px-4 py-2 font-semibold hover:bg-purple-700">Se connecter</button>
+          <p id="loginStatus" class="text-sm"></p>
+        </form>
+      </section>
+
+      <section id="dashboardBox" class="hidden space-y-6">
+        <div class="rounded-2xl border border-slate-800 bg-slate-900 p-6 shadow-xl">
+          <div class="mb-4 flex flex-wrap items-center justify-between gap-4">
+            <h2 class="text-xl font-bold">Ajouter un produit réel</h2>
+            <button id="logoutBtn" class="rounded-lg border border-slate-700 px-4 py-2 text-sm font-semibold hover:bg-slate-800">Déconnexion</button>
+          </div>
+
+          <form id="productForm" class="grid gap-4 md:grid-cols-2">
+            <div class="md:col-span-2">
+              <label class="mb-1 block text-sm font-semibold" for="title">Nom du produit</label>
+              <input id="title" name="title" type="text" required class="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2" />
+            </div>
+
+            <div class="md:col-span-2">
+              <label class="mb-1 block text-sm font-semibold" for="description">Description</label>
+              <textarea id="description" name="description" rows="3" required class="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2"></textarea>
+            </div>
+
+            <div>
+              <label class="mb-1 block text-sm font-semibold" for="price">Prix</label>
+              <input id="price" name="price" type="text" placeholder="89,99 €" class="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2" />
+            </div>
+
+            <div>
+              <label class="mb-1 block text-sm font-semibold" for="image">URL image</label>
+              <input id="image" name="image" type="url" placeholder="https://..." class="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2" />
+            </div>
+
+            <div class="md:col-span-2">
+              <label class="mb-1 block text-sm font-semibold" for="affiliateUrl">Lien affilié Amazon</label>
+              <input id="affiliateUrl" name="affiliateUrl" type="url" required placeholder="https://www.amazon.fr/...?...&tag=votretag-21" class="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2" />
+            </div>
+
+            <button id="saveBtn" class="md:col-span-2 rounded-lg bg-purple-600 px-4 py-3 font-semibold hover:bg-purple-700">Enregistrer</button>
+          </form>
+          <p id="formStatus" class="mt-3 text-sm"></p>
+        </div>
+
+        <div class="rounded-2xl border border-slate-800 bg-slate-900 p-6 shadow-xl">
+          <h3 class="text-lg font-bold">Produits enregistrés</h3>
+          <div id="productList" class="mt-4 space-y-3"></div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const AUTH_KEY = 'steeven_admin_auth';
+      const HASH = '2bb80d537b1da3e38bd30361aa855686bde0eacd7162fef6a25fe97bf527a25b'; // secret
+      const SESSION_MS = 1000 * 60 * 60 * 8;
+
+      const loginBox = document.getElementById('loginBox');
+      const dashboardBox = document.getElementById('dashboardBox');
+      const loginForm = document.getElementById('loginForm');
+      const loginStatus = document.getElementById('loginStatus');
+      const logoutBtn = document.getElementById('logoutBtn');
+      const productForm = document.getElementById('productForm');
+      const productList = document.getElementById('productList');
+      const formStatus = document.getElementById('formStatus');
+
+      const textToHash = async (text) => {
+        const msgBuffer = new TextEncoder().encode(text);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+        return Array.from(new Uint8Array(hashBuffer)).map((b) => b.toString(16).padStart(2, '0')).join('');
+      };
+
+      const isAuthenticated = () => {
+        try {
+          const auth = JSON.parse(sessionStorage.getItem(AUTH_KEY));
+          return Boolean(auth?.ok && Date.now() < auth.expiresAt);
+        } catch {
+          return false;
+        }
+      };
+
+      const setAuth = () => {
+        sessionStorage.setItem(AUTH_KEY, JSON.stringify({ ok: true, expiresAt: Date.now() + SESSION_MS }));
+      };
+
+      const showDashboard = () => {
+        loginBox.classList.add('hidden');
+        dashboardBox.classList.remove('hidden');
+        renderProducts();
+      };
+
+      const showLogin = () => {
+        loginBox.classList.remove('hidden');
+        dashboardBox.classList.add('hidden');
+      };
+
+      const setFormStatus = (message, type = 'info') => {
+        formStatus.textContent = message;
+        formStatus.className = `mt-3 text-sm ${type === 'error' ? 'text-red-300' : type === 'success' ? 'text-green-300' : 'text-slate-300'}`;
+      };
+
+      const renderProducts = () => {
+        const products = window.MarketProducts.loadProducts();
+        productList.innerHTML = '';
+
+        if (!products.length) {
+          productList.innerHTML = '<p class="rounded-lg border border-slate-700 bg-slate-950 p-3 text-sm text-slate-400">Aucun produit.</p>';
+          return;
+        }
+
+        products.forEach((product) => {
+          const row = document.createElement('article');
+          row.className = 'flex flex-wrap items-center justify-between gap-3 rounded-lg border border-slate-700 bg-slate-950 p-3';
+          row.innerHTML = `
+            <div>
+              <h4 class="font-semibold">${product.title}</h4>
+              <p class="text-sm text-slate-300">${product.price || 'Prix non renseigné'} · ${product.affiliateUrl}</p>
+            </div>
+            <button data-id="${product.id}" class="delete-btn rounded-lg border border-red-500/40 px-3 py-1 text-sm font-semibold text-red-300 hover:bg-red-500/10">Supprimer</button>
+          `;
+          productList.appendChild(row);
+        });
+
+        productList.querySelectorAll('.delete-btn').forEach((button) => {
+          button.addEventListener('click', () => {
+            const id = button.getAttribute('data-id');
+            const products = window.MarketProducts.loadProducts().filter((p) => p.id !== id);
+            window.MarketProducts.saveProducts(products);
+            renderProducts();
+            setFormStatus('Produit supprimé.', 'success');
+          });
+        });
+      };
+
+      loginForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        loginStatus.textContent = 'Vérification...';
+        const password = document.getElementById('password').value;
+        const hash = await textToHash(password);
+
+        if (hash !== HASH) {
+          loginStatus.textContent = 'Mot de passe invalide.';
+          loginStatus.className = 'text-sm text-red-300';
+          return;
+        }
+
+        setAuth();
+        loginStatus.textContent = 'Connecté ✅';
+        loginStatus.className = 'text-sm text-green-300';
+        showDashboard();
+      });
+
+      logoutBtn.addEventListener('click', () => {
+        sessionStorage.removeItem(AUTH_KEY);
+        showLogin();
+      });
+
+      productForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const data = new FormData(productForm);
+
+        const newProduct = {
+          title: data.get('title'),
+          description: data.get('description'),
+          price: data.get('price'),
+          image: data.get('image'),
+          affiliateUrl: data.get('affiliateUrl')
+        };
+
+        if (!window.MarketProducts.isAmazonUrl(newProduct.affiliateUrl)) {
+          setFormStatus('Le lien doit pointer vers un domaine Amazon.', 'error');
+          return;
+        }
+
+        if (!window.MarketProducts.hasAffiliateTag(newProduct.affiliateUrl)) {
+          setFormStatus('Le lien Amazon doit inclure un paramètre tag=...', 'error');
+          return;
+        }
+
+        const products = window.MarketProducts.loadProducts();
+        products.unshift(window.MarketProducts.sanitizeProduct(newProduct));
+        window.MarketProducts.saveProducts(products);
+        renderProducts();
+        productForm.reset();
+        setFormStatus('Produit enregistré et publié sur le site ✅', 'success');
+      });
+
+      window.addEventListener('DOMContentLoaded', () => {
+        if (isAuthenticated()) {
+          showDashboard();
+        } else {
+          showLogin();
+        }
+        lucide.createIcons();
+      });
+    </script>
+  </body>
+</html>
