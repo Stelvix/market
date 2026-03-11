@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Steeven Recommends : sélection de produits Amazon utiles et bien notés."
+      content="Steeven Recommends : produits Amazon utiles avec liens affiliés et dashboard de gestion."
     />
-    <title>Steeven Recommends | Bons plans Amazon</title>
+    <title>Steeven Recommends | Sélection Amazon</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script defer src="assets/js/products.js"></script>
   </head>
   <body class="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50 text-gray-800 antialiased">
     <header class="sticky top-0 z-20 bg-white/90 backdrop-blur border-b border-purple-100">
@@ -20,14 +21,7 @@
           <span><span class="text-purple-600">Steeven</span> Recommends</span>
         </a>
 
-        <button
-          id="mobile-menu-button"
-          class="rounded-md p-2 md:hidden focus:outline-none focus:ring-2 focus:ring-purple-500"
-          type="button"
-          aria-expanded="false"
-          aria-controls="mobile-menu"
-          aria-label="Ouvrir le menu"
-        >
+        <button id="mobile-menu-button" class="rounded-md p-2 md:hidden" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Ouvrir le menu">
           <i data-lucide="menu" class="h-6 w-6"></i>
         </button>
 
@@ -36,6 +30,7 @@
           <li><a href="#produits" class="font-medium hover:text-purple-600">Produits</a></li>
           <li><a href="#apropos" class="font-medium hover:text-purple-600">À propos</a></li>
           <li><a href="#contact" class="font-medium hover:text-purple-600">Contact</a></li>
+          <li><a href="dashboard.html" class="rounded-full bg-purple-600 px-4 py-2 text-sm font-semibold text-white hover:bg-purple-700">Dashboard sécurisé</a></li>
         </ul>
       </nav>
 
@@ -44,6 +39,7 @@
         <li><a href="#produits" class="block rounded-md px-3 py-2 hover:bg-purple-50">Produits</a></li>
         <li><a href="#apropos" class="block rounded-md px-3 py-2 hover:bg-purple-50">À propos</a></li>
         <li><a href="#contact" class="block rounded-md px-3 py-2 hover:bg-purple-50">Contact</a></li>
+        <li><a href="dashboard.html" class="mt-2 block rounded-md bg-purple-600 px-3 py-2 font-semibold text-white">Dashboard sécurisé</a></li>
       </ul>
     </header>
 
@@ -52,84 +48,42 @@
         <div class="rounded-3xl bg-white p-8 text-center shadow-xl sm:p-12">
           <p class="mb-3 text-sm font-semibold uppercase tracking-widest text-purple-700">Sélection Amazon</p>
           <h1 class="text-3xl font-black leading-tight text-gray-900 sm:text-5xl">
-            Des produits utiles, testés et
-            <span class="text-purple-600">recommandés avec transparence</span>
+            Un site amélioré pour publier et monétiser tes
+            <span class="text-purple-600">produits affiliés Amazon</span>
           </h1>
-          <p class="mx-auto mt-5 max-w-2xl text-lg text-gray-600">
-            Gagne du temps avec une sélection claire : qualité, avis vérifiés et rapport qualité-prix.
+          <p class="mx-auto mt-5 max-w-3xl text-lg text-gray-600">
+            Tous les produits ci-dessous sont pilotés depuis un dashboard sécurisé. Tu peux ajouter, modifier et supprimer
+            des fiches en quelques secondes.
           </p>
-          <a
-            href="#produits"
-            class="mt-8 inline-flex items-center gap-2 rounded-full bg-purple-600 px-7 py-3 font-bold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-purple-700"
-          >
-            Voir les offres
-            <i data-lucide="arrow-right" class="h-4 w-4" aria-hidden="true"></i>
-          </a>
         </div>
       </section>
 
       <section id="produits" class="mx-auto max-w-6xl px-4 pb-16 sm:px-6">
-        <h2 class="mb-8 text-center text-3xl font-extrabold text-gray-900 sm:text-4xl">
-          Produits <span class="text-purple-600">phares</span>
-        </h2>
-
-        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          <article class="flex h-full flex-col rounded-2xl bg-white p-6 shadow-lg transition hover:-translate-y-1 hover:shadow-xl">
-            <img src="https://placehold.co/600x400/e9d5ff/4c1d95?text=Produit+1" alt="Casque audio sans fil" class="mb-4 h-44 w-full rounded-xl object-cover" loading="lazy" />
-            <h3 class="text-xl font-bold text-gray-900">Casque audio sans fil</h3>
-            <p class="mt-3 flex-1 text-gray-600">Excellente autonomie, confort longue durée, réduction de bruit performante.</p>
-            <a href="https://amazon.fr" target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-purple-600 px-5 py-3 font-semibold text-white hover:bg-purple-700">
-              Voir sur Amazon <i data-lucide="external-link" class="h-4 w-4" aria-hidden="true"></i>
-            </a>
-          </article>
-
-          <article class="flex h-full flex-col rounded-2xl bg-white p-6 shadow-lg transition hover:-translate-y-1 hover:shadow-xl">
-            <img src="https://placehold.co/600x400/ddd6fe/4c1d95?text=Produit+2" alt="Lampe de bureau LED" class="mb-4 h-44 w-full rounded-xl object-cover" loading="lazy" />
-            <h3 class="text-xl font-bold text-gray-900">Lampe de bureau LED</h3>
-            <p class="mt-3 flex-1 text-gray-600">Éclairage réglable, design minimaliste, parfait pour le travail et les études.</p>
-            <a href="https://amazon.fr" target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-purple-600 px-5 py-3 font-semibold text-white hover:bg-purple-700">
-              Voir sur Amazon <i data-lucide="external-link" class="h-4 w-4" aria-hidden="true"></i>
-            </a>
-          </article>
-
-          <article class="flex h-full flex-col rounded-2xl bg-white p-6 shadow-lg transition hover:-translate-y-1 hover:shadow-xl">
-            <img src="https://placehold.co/600x400/c4b5fd/4c1d95?text=Produit+3" alt="Batterie externe USB-C" class="mb-4 h-44 w-full rounded-xl object-cover" loading="lazy" />
-            <h3 class="text-xl font-bold text-gray-900">Batterie externe USB-C</h3>
-            <p class="mt-3 flex-1 text-gray-600">Charge rapide, grande capacité, format compact pour les déplacements.</p>
-            <a href="https://amazon.fr" target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-purple-600 px-5 py-3 font-semibold text-white hover:bg-purple-700">
-              Voir sur Amazon <i data-lucide="external-link" class="h-4 w-4" aria-hidden="true"></i>
-            </a>
-          </article>
+        <div class="mb-8 flex flex-col items-center justify-between gap-4 sm:flex-row">
+          <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Produits <span class="text-purple-600">recommandés</span></h2>
+          <a href="dashboard.html" class="inline-flex items-center gap-2 rounded-full border border-purple-200 bg-white px-5 py-2 font-semibold text-purple-700 hover:bg-purple-50">
+            Gérer les produits
+            <i data-lucide="shield-check" class="h-4 w-4" aria-hidden="true"></i>
+          </a>
         </div>
+
+        <div id="productsGrid" class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"></div>
       </section>
 
       <section id="apropos" class="mx-auto max-w-6xl px-4 pb-16 sm:px-6">
         <div class="rounded-3xl bg-purple-100 p-8 text-center sm:p-10">
-          <h2 class="text-3xl font-extrabold text-purple-900">Pourquoi nous faire confiance ?</h2>
-          <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
-            <article class="rounded-2xl bg-white p-6 shadow">
-              <i data-lucide="badge-check" class="mx-auto h-10 w-10 text-purple-600" aria-hidden="true"></i>
-              <h3 class="mt-3 text-xl font-bold">Sélection rigoureuse</h3>
-              <p class="mt-2 text-gray-600">Nous privilégions les produits fiables et réellement utiles.</p>
-            </article>
-            <article class="rounded-2xl bg-white p-6 shadow">
-              <i data-lucide="star" class="mx-auto h-10 w-10 text-purple-600" aria-hidden="true"></i>
-              <h3 class="mt-3 text-xl font-bold">Avis transparents</h3>
-              <p class="mt-2 text-gray-600">Chaque recommandation est justifiée de façon claire et honnête.</p>
-            </article>
-            <article class="rounded-2xl bg-white p-6 shadow">
-              <i data-lucide="heart" class="mx-auto h-10 w-10 text-purple-600" aria-hidden="true"></i>
-              <h3 class="mt-3 text-xl font-bold">Focus utilisateur</h3>
-              <p class="mt-2 text-gray-600">Ton besoin réel passe avant le marketing.</p>
-            </article>
-          </div>
+          <h2 class="text-3xl font-extrabold text-purple-900">Transparence affiliation</h2>
+          <p class="mt-4 text-purple-900/80">
+            Certains liens sont des liens affiliés Amazon : si un achat est réalisé, une commission peut être versée sans
+            coût supplémentaire pour l'utilisateur.
+          </p>
         </div>
       </section>
 
       <section id="contact" class="mx-auto max-w-4xl px-4 pb-20 text-center sm:px-6">
         <div class="rounded-3xl bg-white p-8 shadow-xl">
           <h2 class="text-3xl font-extrabold text-gray-900">Contact</h2>
-          <p class="mt-3 text-gray-600">Une question ou une suggestion de produit ?</p>
+          <p class="mt-3 text-gray-600">Tu veux proposer un produit à tester ?</p>
           <a href="mailto:jeunepro@outlook.com" class="mt-5 inline-flex items-center gap-2 rounded-full bg-purple-50 px-6 py-3 font-semibold text-purple-700 hover:bg-purple-100">
             <i data-lucide="mail" class="h-4 w-4" aria-hidden="true"></i>
             jeunepro@outlook.com
@@ -143,15 +97,50 @@
     </footer>
 
     <script>
-      lucide.createIcons();
-
       const mobileMenuButton = document.getElementById('mobile-menu-button');
       const mobileMenu = document.getElementById('mobile-menu');
+      const productsGrid = document.getElementById('productsGrid');
+
+      const createCard = (product) => {
+        const card = document.createElement('article');
+        card.className = 'flex h-full flex-col rounded-2xl bg-white p-6 shadow-lg transition hover:-translate-y-1 hover:shadow-xl';
+        card.innerHTML = `
+          <img src="${product.image || 'https://placehold.co/600x400/e9d5ff/4c1d95?text=Produit'}" alt="${product.title}" class="mb-4 h-44 w-full rounded-xl object-cover" loading="lazy" />
+          <h3 class="text-xl font-bold text-gray-900">${product.title}</h3>
+          <p class="mt-3 flex-1 text-gray-600">${product.description}</p>
+          ${product.price ? `<p class="mt-3 text-lg font-extrabold text-purple-700">${product.price}</p>` : ''}
+          <a href="${product.affiliateUrl}" target="_blank" rel="noopener noreferrer sponsored" class="mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-purple-600 px-5 py-3 font-semibold text-white hover:bg-purple-700">
+            Voir sur Amazon <i data-lucide="external-link" class="h-4 w-4" aria-hidden="true"></i>
+          </a>
+        `;
+        return card;
+      };
+
+      const renderProducts = () => {
+        const products = window.MarketProducts?.loadProducts() || [];
+        productsGrid.innerHTML = '';
+
+        if (!products.length) {
+          productsGrid.innerHTML = '<p class="rounded-xl bg-white p-5 text-center text-gray-600 shadow">Aucun produit disponible pour le moment.</p>';
+          return;
+        }
+
+        products.forEach((product) => {
+          productsGrid.appendChild(createCard(product));
+        });
+        lucide.createIcons();
+      };
 
       mobileMenuButton?.addEventListener('click', () => {
         mobileMenu?.classList.toggle('hidden');
         const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
         mobileMenuButton.setAttribute('aria-expanded', String(!isExpanded));
+      });
+
+      window.addEventListener('storage', renderProducts);
+      window.addEventListener('DOMContentLoaded', () => {
+        renderProducts();
+        lucide.createIcons();
       });
     </script>
   </body>
